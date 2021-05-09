@@ -1,4 +1,4 @@
-const lineColors = { //establishes colour of lines
+const lineColors = { //establishes colours of lines
     lightgreen: "#90ee90",
     green: "#44bb66",
     lightred: "#ffcccb",
@@ -7,11 +7,11 @@ const lineColors = { //establishes colour of lines
 }
 
 const config = {
-    displayModeBar: false, //disables user control
-    responsive: true //allows scaling of window
+    displayModeBar: false, //disables too much user control
+    responsive: true //allows scaling to window size
 }
 
-const plot1Div = document.getElementById("vis1");
+const plot1Div = document.getElementById("vis1"); //connects to html grid areas
 const plot2Div = document.getElementById("vis2");
 const plot3Div = document.getElementById("vis3");
 
@@ -23,9 +23,9 @@ Plotly.d3.csv("predictions.csv", function(rows){ //returns each row of csv file
         type: "scatter", //sets up scatter plot
         mode: "lines", //uses lines to connect the dots
         name: "Australia",
-        x: unpack(rows, "Year"), //sets x-coordinate as year column
-        y: unpack(rows, "Australia"), //sets y-coordinate as Australia column
-        line: {
+        x: unpack(rows, "Year"), //sets x-coordinate as year column from the csv
+        y: unpack(rows, "Australia"), //sets y-coordinate as Australia column from the csv
+        line: { //manipulates color and width of the line
             color: lineColors.green,
             width: 5
         }
@@ -79,28 +79,28 @@ Plotly.d3.csv("predictions.csv", function(rows){ //returns each row of csv file
 
     var layout = { //customises layout of graph
         title: "CRA vs Australia Predicted Child Mortality",
-        xaxis: { //creates spike lines
+        xaxis: { //creates and manipulates a spike line
             showspikes: true,
             spikemode: "across",
             spikecolor: "black",
             spikethickness: 2
         },
         yaxis: {
-            title: "Child Mortality (per 1000)"
+            title: "Child Mortality (per 1000)" //places a name on the y-axis
         },
         legend: {
-            "orientation": "h"
+            "orientation": "h" //makes the legend horizontal as opposed to vertical
         },
-        height: 500
+        height: 500 //charts don't work with the grid unless a height is specifically allocated for them
     }
 
-    Plotly.newPlot(plot3Div, data, layout, config); //plots the graph using Plotly under the html element
+    Plotly.newPlot(plot3Div, data, layout, config); //plots the graph using Plotly inside the html element
 });
 
 
 //PICTOGRAM
 Plotly.d3.csv("pictogram.csv", function(rows){
-    var trace5 = {
+    var trace5 = { //trace numbering continued from previous chart, even though uneccessary, as to avoid confusion
         type: "scatter", //sets up scatter plot
         mode: "markers", //removes lines, keeps the markers only
         name: "CRA",
@@ -108,9 +108,9 @@ Plotly.d3.csv("pictogram.csv", function(rows){
         y: unpack(rows, "A"),
         marker: {
             color: lineColors.red,
-            size: 15
+            size: 15 //makes the markers quite large
         },
-        hoverinfo: 'none' //removes hover interaction (not needed)
+        hoverinfo: 'none' //removes hover interaction (not needed for this chart)
     }
     var trace6 = {
         type: "scatter",
@@ -122,7 +122,7 @@ Plotly.d3.csv("pictogram.csv", function(rows){
             size: 15
         },
         hoverinfo: 'none',
-        showlegend: false //removes legend as to keep only the 2 legends
+        showlegend: false //legend removed for all subsequent CRA columns as to keep only the 2 items on the legend
     }
     var trace7 = {
         type: "scatter",
@@ -227,13 +227,14 @@ Plotly.d3.csv("pictogram.csv", function(rows){
         x: unpack(rows, "X"),
         y: unpack(rows, "Different"),
         marker: {
-            color: lineColors.lightgreen,
+            color: lineColors.lightgreen, //color different to rest to differentiate that it is Australia
             size: 15
         },
         hoverinfo: 'none'
     }
     
-    var data = [trace5, trace6, trace7, trace8, trace9, trace10, trace11, trace12, trace13, trace14, trace15];
+    //even though trace numbering continued, data and layout numbering has not to simplify and show that they have the same function
+    var data = [trace5, trace6, trace7, trace8, trace9, trace10, trace11, trace12, trace13, trace14, trace15]; 
 
     var layout = {
         title: "Child Deaths: CRA vs Australia (per 1000)",
@@ -259,18 +260,18 @@ Plotly.d3.csv("pictogram.csv", function(rows){
 Plotly.d3.csv("pie.csv", function(rows){
     var trace16 = {
         type: "pie", //sets up pie chart
-        values: rows.map(row => parseFloat(row.CRA)), //converts cells to decimal float
+        values: rows.map(row => parseFloat(row.CRA)), //converts cells to decimal float as they have % symbols in them
         labels: unpack(rows, "Causes"),
         name: "CRA",
         marker: {
-            colors: unpack(rows, "Colors")
+            colors: unpack(rows, "Colors") //uses the colours on the csv file to set the colours for the different pie chart items
         },
-        domain: {
-            row: 0,
-            column: 0
+        domain: { //sets the chart up on a domain as to be able to be placed in a grid-like structure, similar to grid in css, allowing the pie charts to be placed next to each other
+            row: 0, //had to add row in as it didnt work without it
+            column: 0 //places the pie chart on the first column of the only row
         },
-        hoverinfo: "label+percent",
-        textinfo: 'none'
+        hoverinfo: "label+percent", //only shows the label and percent when hovering over, as the data is the same as the percent
+        textinfo: 'none' //removes text from the pie charts, only text is legend and when hovered
     }
     var trace17 = {
         type: "pie", //sets up pie chart
@@ -290,11 +291,11 @@ Plotly.d3.csv("pie.csv", function(rows){
 
     var data = [trace16, trace17];
 
-    var layout = { //customises layout of graph
+    var layout = {
         title: "CRA vs Australian Avoidable Causes of Child Mortality",
         grid: {rows: 1, columns: 2},
         legend: {
-            y: 0.5
+            y: 0.5 //aligns the legend with the center of the pie chart
         },
         height: 500
     }
@@ -303,7 +304,6 @@ Plotly.d3.csv("pie.csv", function(rows){
 });
 
 
-function unpack(rows, key) {
-    return rows.map(function(row) {return row[key];});
+function unpack(rows, key) { //unpacks csv data and provide each value of the rows
+    return rows.map(function(row) {return row[key];}); //remaps a value from one array to the other, returning the individual value for each row
 }
-

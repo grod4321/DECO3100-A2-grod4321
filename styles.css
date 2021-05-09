@@ -1,22 +1,24 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:400|Baskervville:400');
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:400|Baskervville:400'); /*imports google fonts for use in the website*/
 
 /*TYPOGRAPHY*/
 html {font-size: 100%;} /*16px*/
 
+/*sets font for overall page*/
 body {
   background: white;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Nunito Sans', sans-serif; 
   font-weight: 400;
   line-height: 1.75;
   color: #000000;
-  margin: 0;
+  margin: 0; /*makes the content take up the entirety of the page*/
 }
 
 p {margin-bottom: 1rem;}
 
+/*sets font for headers*/
 h1, h2, h3, h4, h5 {
   margin: 3rem 0 1.38rem;
-  font-family: 'Baskervville', serif;
+  font-family: 'Baskervville', serif; 
   font-weight: 400;
   line-height: 1.3;
 }
@@ -39,43 +41,39 @@ small, .text_small {font-size: 0.75rem;}
 
 
 /*GRID*/
-.grid-container {
-  display: grid;
-  grid-template-columns: 0.1fr 1fr 0.1fr;
-  grid-template-rows: 100px 1fr 300px;
+.grid-container { /*creates grid using columns and rows, setting width and height of different parts of the page*/
+  display: grid; /*allows for grids to be made*/
+  grid-template-columns: 0.1fr 1fr 0.1fr; /*sets the asides to a tenth of the main area*/
+  grid-template-rows: 100px 1fr 0.1fr; /*sets the header to a strict 100px and the footer to a tenth of the main page*/
   gap: 0px 0px;
-  grid-template-areas:
+  grid-template-areas: /*creates the template for the grid*/
     "header header header"
     "aside1 main aside"
     "footer footer footer";
 }
+
 .header { 
-  grid-area: header;
+  grid-area: header; /*places the section within the given area in the template above*/
   position: relative;
-  background-color: #1346a4;
+  background-color: #1346a4; /*sets the dark blue background for the header*/
   margin: 0;
+  /*the following three lines make sure that the text stays in the middle of the screen by flexing the display and aligning and justifying everything to the center*/
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.header h1 {
-  color: white;
+.header h1 { /*specifically edits the h1 text inside the header*/
+  color: white; /*makes the font white against the blue background*/
 }
 
 .aside1 {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  gap: 0px 0px;
-  grid-template-areas:
-    ".";
   grid-area: aside1;
-  background-color: #FFF8F0;
+  background-color: #FFF8F0; /*sets a light pink background to block off the sides and draw eyes into the centre of the screen*/
 }
 .main {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: .5fr .5fr .5fr .5fr .5fr .5fr .5fr;
+  grid-template-rows: .5fr .5fr .5fr .5fr .5fr .5fr .5fr; /*sets the row height to .5 as 1 was creating too much distance*/
   gap: 0px 0px;
   grid-template-areas:
     "intro"
@@ -94,9 +92,9 @@ small, .text_small {font-size: 0.75rem;}
 .intro h2 {
   text-align: center;
   vertical-align: middle;
-  line-height: 50px;
+  line-height: 50px; /*gives more height for greater spacing*/
 }
-.intro h5 {
+.intro h5 { /*targetting of specific text types for more effective manipulation and variation*/
   text-align: center;
   vertical-align: middle;
   
@@ -107,8 +105,8 @@ small, .text_small {font-size: 0.75rem;}
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 15%;
-  line-height: 25px;
+  margin: 0 15%; /*gives a 15% margin on the left and right to center it specifically*/
+  line-height: 25px; /*gives a slight boost to line spacing*/
 }
 
 .text2 { 
@@ -165,8 +163,10 @@ small, .text_small {font-size: 0.75rem;}
 .footer { 
   grid-area: footer;
   background-color: #1346a4;
+  position: relative;
+  bottom: 0;
 }
-.footer li {
+.footer p {
   text-align: left;
   vertical-align: middle;
   display: flex;
@@ -176,6 +176,3 @@ small, .text_small {font-size: 0.75rem;}
   line-height: 25px;
   color: white;
 }
-
-
-/*MAIN*/
