@@ -1,60 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:400|Baskervville:400');
 
-/*GRID*/
-.grid-container {
-    display: grid;
-    grid-template-columns: 100px 1fr 100px;
-    grid-template-rows: 100px 1fr 1fr 50px;
-    gap: 0px 0px;
-    grid-template-areas:
-      "header header header"
-      "nav main aside"
-      "nav main aside"
-      "footer footer footer";
-}
-.header { grid-area: header; }
-.nav {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    gap: 0px 0px;
-    grid-template-areas:
-      ".";
-    grid-area: nav;
-}
-.main {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    gap: 0px 0px;
-    grid-template-areas:
-      "intro intro intro"
-      "vis1 vis1 text1"
-      "vis2 vis2 text2"
-      "vis3 vis3 text3"
-      "conc conc conc";
-    grid-area: main;
-}
-  .intro { grid-area: intro; }
-  .vis1 { grid-area: vis1; }
-  .text1 { grid-area: text1; }
-  .vis2 { grid-area: vis2; }
-  .text2 { grid-area: text2; }
-  .vis3 { grid-area: vis3; }
-  .text3 { grid-area: text3; }
-  .conc { grid-area: conc; }
-  .aside {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    gap: 0px 0px;
-    grid-template-areas:
-      ".";
-    grid-area: aside;
-}
-.footer { grid-area: footer; }
-
-
 /*TYPOGRAPHY*/
 html {font-size: 100%;} /*16px*/
 
@@ -64,6 +9,7 @@ body {
   font-weight: 400;
   line-height: 1.75;
   color: #000000;
+  margin: 0;
 }
 
 p {margin-bottom: 1rem;}
@@ -89,3 +35,147 @@ h4 {font-size: 1.777rem;}
 h5 {font-size: 1.333rem;}
 
 small, .text_small {font-size: 0.75rem;}
+
+
+
+/*GRID*/
+.grid-container {
+  display: grid;
+  grid-template-columns: 0.1fr 1fr 0.1fr;
+  grid-template-rows: 100px 1fr 300px;
+  gap: 0px 0px;
+  grid-template-areas:
+    "header header header"
+    "aside1 main aside"
+    "footer footer footer";
+}
+.header { 
+  grid-area: header;
+  position: relative;
+  background-color: #1346a4;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header h1 {
+  color: white;
+}
+
+.aside1 {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ".";
+  grid-area: aside1;
+  background-color: #FFF8F0;
+}
+.main {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: .5fr .5fr .5fr .5fr .5fr .5fr .5fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "intro"
+    "vis1"
+    "text1"
+    "vis2"
+    "text2"
+    "vis3"
+    "conc";
+  grid-area: main;
+}
+.intro { 
+  grid-area: intro;
+  
+}
+.intro h2 {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 50px;
+}
+.intro h5 {
+  text-align: center;
+  vertical-align: middle;
+  
+}
+.intro p {
+  text-align: left;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 15%;
+  line-height: 25px;
+}
+
+.text2 { 
+  grid-area: text2; 
+}
+.text2 p {
+  text-align: left;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 15%;
+  line-height: 25px;
+}
+
+.vis1 { grid-area: vis1; }
+.text1 { grid-area: text1; }
+.text1 p {
+  text-align: left;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 15%;
+  line-height: 25px;
+}
+
+.vis2 { grid-area: vis2; }
+.vis3 { grid-area: vis3; }
+
+.conc { 
+  grid-area: conc;
+}
+.conc p {
+  text-align: left;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 15%;
+  line-height: 25px;
+}
+
+.aside {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ".";
+  grid-area: aside;
+  background-color: #FFF8F0;
+}
+.footer { 
+  grid-area: footer;
+  background-color: #1346a4;
+}
+.footer li {
+  text-align: left;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10%;
+  line-height: 25px;
+  color: white;
+}
+
+
+/*MAIN*/
